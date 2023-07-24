@@ -7,20 +7,21 @@ public class Student {
     private int feesPaid;
     private int feesTotal;
 
-    public Student(int id, String name, int grade, int feesPaid, int feesTotal) {
+    public Student(int id, String name, int grade) {
         this.id = id;
         this.name = name;
         this.grade = grade;
-        this.feesPaid = 0;
-        this.feesTotal = 30000;
+        feesPaid = 0;
+        feesTotal = 30000;
     }
 
     public void setGrade(int grade) {
         this.grade = grade;
     }
 
-    public void updateFeesPaid(int fees) {
+    public void payFees(int fees) {
         feesPaid += fees;
+        School.updateTotalMoneyEarned(feesPaid);
     }
 
     public int getId() {
@@ -41,5 +42,9 @@ public class Student {
 
     public int getFeesTotal() {
         return feesTotal;
+    }
+
+    public int getRemaininFees(){
+        return feesTotal -= feesPaid;
     }
 }
